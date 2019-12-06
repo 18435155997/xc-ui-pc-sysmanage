@@ -51,6 +51,8 @@
             -->
          <el-button size="small"type="text" @click="edit(page.row.pageId)">编辑
          </el-button>
+         <el-button size="small"type="text" @click="del(page.row.pageId)">删除
+         </el-button>
        </template>
      </el-table-column>
    </el-table>
@@ -107,6 +109,19 @@ export default {
         // path:"/cms/page/edit/001"            // 通过服务端的springmvc传参
         // 定义路由，路由通过url传参
         path:"/cms/page/edit/"+pageId       // 通过路由，拿到变量的值
+      })
+    },
+    del:function(pageId){
+      //debugger
+      this.$confirm('确认删除此页面吗?', '提示', {}).then(() => {
+        CmsApi.page_del(pageId).then(res=>{
+          if(res.success){
+            this.$message.success("删除成功");
+            this.query();
+          }else{
+            this.$message.success("删除失败");
+          }
+        })
       })
     }
   },

@@ -22,6 +22,11 @@ return http.requestQuickGet(apiUrl+'/cms/page/get/'+id);
 
 // 修改页面的提交
 export const page_edit = (id,params) => {
+  return http.requestPut(apiUrl+'/cms/page/edit/'+id,params);
+}
 
+// 删除页面
+export const page_del = id =>{
+  return http.requestDelete(apiUrl+'/cms/page/del/'+id);
 }
 
